@@ -16,13 +16,17 @@ def CalcFreq(sequence,n,width):
             name += letter
         words[name] = 0
     
+    master = []
     for i in range(int(len(sequence)/width)):
         start = i*300
-        end = start + 299
+        end = start + 300
         chunk = sequence[start:end]
+        blank = words.copy()
         for x in range(int(len(chunk)/n)):
             c_start = x*n
             c_end = c_start+n
-            words[chunk[c_start:c_end]] += 1
+            w = chunk[c_start:c_end]
+            blank[w] += 1
+        master.append(blank)
     
-    return words
+    return master
